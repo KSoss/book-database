@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Catalog</title>
+</head>
+<body>
+  <h1>Book Catalog</h1>
+
+  <!-- display existing books -->
+  <h2>Existing Books</h2>
+  <ul id="book-list"></ul>
+  <input type="submit" value="Show Books">
+
+  <!-- add new book -->
+  <h2>Add New Book</h2>
+  <form id="add-book-form">
+    <div>
+      <label for="title-input">Title:</label>
+      <input type="text" id="title-input" name="title-input">
+    </div>
+    <div>
+      <label for="genre-input">Genre:</label>
+      <input type="text" id="genre-input" name="genre-input">
+    </div>
+    <div>
+      <label for="author-input">Author:</label>
+      <input type="text" id="author-input" name="author-input">
+    </div>
+    <div>
+      <input type="submit" value="Add Book">
+    </div>
+  </form>
+
+  <!-- include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- include the client script -->
+  <script src="bookClient.js"></script>
+</body>
+</html>

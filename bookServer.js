@@ -19,6 +19,9 @@ const pool = new Pool({
   port: 6432,
 });
 
+app.listen(port, function() {
+  console.log('Listening on port', port);
+});
 
 app.get('/books', (req, res, next) => {
   pool.query('SELECT b.name, b.genre, a.name AS author FROM book b JOIN author a ON b.author_id = a.id', (err, result) => {
@@ -60,9 +63,7 @@ app.use((err, req, res, next) => {
   res.sendStatus(404);
 });
 
-app.listen(port, function() {
-  console.log('Listening on port', port);
-});
+
 
 
 // Lord forgive me for what I must do
@@ -112,3 +113,32 @@ app.post('/books', (req, res, next) => {
     res.status(400).json({ message: 'Invalid request data.' });
   }
 });
+
+// DELETE to /books/:id - Delete a book
+app.delete("/books/:id", (req, res, next) => {
+  const id = Number.parseInt(req.params.id);
+  if (!Number.isInteger(id)){
+    return res.status(400).send("No book found with that ID");
+  }
+
+pool.query('DELETE FROM book WHERE id = $1 RETURNING *', [id], (err, data) => {
+    if (err){
+      return next(err);
+    }
+    
+    const deletedBook = data.rows[0];
+    console.log(deletedBook);
+    if (deletedBook){
+      // respond with deleted row
+      res.send(deletedBook);
+    } else {
+      res.status(404).send("No book found with that ID");
+    }
+  });
+
+
+});
+
+
+
+module.exports = app;
