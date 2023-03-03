@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <title>Book Catalog</title>
 </head>
 <body>
   <h1>Book Catalog</h1>
 
   <!-- display existing books -->
-  <h2>Existing Books</h2>
+
   <ul id="book-list"></ul>
-  <input type="submit" value="Show Books">
+  <input type="submit" id="showBook" value="Show Books we know">
 
   <!-- add new book -->
   <h2>Add New Book</h2>
@@ -27,13 +28,13 @@
       <input type="text" id="author-input" name="author-input">
     </div>
     <div>
-      <input type="submit" value="Add Book">
+      <input id = "addBook" type="submit" value="Add Book">
     </div>
   </form>
 
-  <!-- include jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- include the client script -->
+  <h2>Existing Books</h2>
+    <div id="container" class="container"></div>
+
   <script src="bookClient.js"></script>
 </body>
 </html>

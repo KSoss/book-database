@@ -8,6 +8,10 @@ const port = 8000;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+// only took 30 minutes to realize I needed this for front end to reach server. Also NPM instal cors
+const cors = require('cors');
+app.use(cors());
+
 
 const DB_HOST = process.env.DATABASE_HOST || 'localhost';
 
@@ -24,7 +28,7 @@ app.listen(port, function() {
 });
 
 app.get('/books', (req, res, next) => {
-  pool.query('SELECT b.name, b.genre, a.name AS author FROM book b JOIN author a ON b.author_id = a.id', (err, result) => {
+  pool.query('SELECT b.*, a.name AS author FROM book b JOIN author a ON b.author_id = a.id', (err, result) => {
     if (err) {
       return next(err);
     }
@@ -39,7 +43,7 @@ app.get('/books/:id', (req, res, next) => {
   }
   console.log("book ID: ", id);
 
-  pool.query('SELECT b.name, b.genre, a.name AS author_name FROM book b JOIN author a ON b.author_id = a.id WHERE b.id = $1', [id], (err, result) => {
+  pool.query('SELECT b.*, a.name AS author FROM book b JOIN author a ON b.author_id = a.id WHERE b.id = $1', [id], (err, result) => {
     if (err) {
       return next(err);
     }
