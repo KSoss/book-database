@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 
+
 const POSTGRES_HOST = process.env.POSTGRES_HOST || '127.0.0.1'
 const POSTGRES_DB = process.env.POSTGRES_DB || 'bookshop'
 const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD || 'password'
@@ -11,7 +12,7 @@ const dbConfig = ({
   host: POSTGRES_HOST,
   database: POSTGRES_DB,
   password: POSTGRES_PASSWORD,
-  port: 5432,
+  port: 6432,
 });
 
 let pool = null;
