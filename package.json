@@ -13,8 +13,8 @@
   },
   "scripts": {
     "start": "nodemon bookServer.js",
-    "migrate": "knex migrate.js:run",
-    "seed": "knex seed.js:run",
+    "migrate": "node migration.js",
+    "seed": "node seed.js",
     "dev": "http-server -p 8080"
   }
 }
