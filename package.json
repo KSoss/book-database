@@ -4,6 +4,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "nodemon": "^2.0.21",
+    "open-cli": "^7.1.0",
     "pg": "^8.9.0",
     "sqlite3": "^5.1.4"
   },
@@ -15,6 +16,6 @@
     "start": "nodemon bookServer.js",
     "migrate": "node migration.js",
     "seed": "node seed.js",
-    "dev": "bookServer.html -p 8080"
+    "dev": "open-cli bookServer.html"
   }
 }
