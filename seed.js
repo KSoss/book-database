@@ -45,7 +45,7 @@ pool.query('SELECT COUNT(*) FROM author', (err, result) => {
         const authors = result.rows;
         // Insert the books into the database with their respective author ids
         pool.query(
-          `INSERT INTO books (name, genre, author_id) VALUES 
+          `INSERT INTO books (title, genre, author_id) VALUES 
           ('Dune', 'Science Fiction', ${authors[0].id}),
           ('Dune Messiah', 'Science Fiction', ${authors[0].id}),
           ('Children of Dune', 'Science Fiction', ${authors[0].id}),
