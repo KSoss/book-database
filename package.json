@@ -15,6 +15,6 @@
     "start": "nodemon bookServer.js",
     "migrate": "node migration.js",
     "seed": "node seed.js",
-    "dev": "http-server -p 8080"
+    "dev": "bookServer.html -p 8080"
   }
 }

@@ -12,11 +12,13 @@ const dbConfig = ({
   host: POSTGRES_HOST,
   database: POSTGRES_DB,
   password: POSTGRES_PASSWORD,
-  port: 5432,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  port: 6432
 });
+
+// potentially useful
+// ssl: {
+//   rejectUnauthorized: false
+// }
 
 let pool = null;
 
