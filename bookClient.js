@@ -1,6 +1,5 @@
 let $displayArea = $(".container")
 
-
 // Show all books button
 $(document).ready(function(){
     $("#showBook").click(function() {    
@@ -10,7 +9,26 @@ $(document).ready(function(){
     });
 })
 
-  
+
+function getAllBooks() {
+    const pool = new Pool(dbConfig);
+    pool.query('SELECT * FROM books', (err, result) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      const data = result.rows;
+      for (let i = 0; i < data.length; i++) {
+        const author = data[i].author;
+        const title = data[i].name;
+        const genre = data[i].genre;
+        const ID = data[i].id;
+        console.log(author, title, genre, ID);
+        pushBookInfo(author, title, genre, ID);
+      }
+    });
+  }
+
 function getAllBooks() { $.get('http://localhost:8000/books', function(data) {
     // display the data on the page
     console.log(data)

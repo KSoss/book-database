@@ -11,7 +11,7 @@ const dbConfig = ({
   host: POSTGRES_HOST,
   database: POSTGRES_DB,
   password: POSTGRES_PASSWORD,
-  port: 6432,
+  port: 5432,
 });
 
 let pool = null;

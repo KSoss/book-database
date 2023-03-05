@@ -7,11 +7,13 @@
     "sqlite3": "^5.1.4"
   },
   "devDependencies": {
+    "http-server": "^14.1.1",
     "knex": "^2.4.2"
   },
   "scripts": {
     "start": "nodemon bookServer.js",
     "migrate": "knex migrate.js:run",
-    "seed": "knex seed.js:run"
+    "seed": "knex seed.js:run",
+    "dev": "http-server -p 8080"
   }
 }
