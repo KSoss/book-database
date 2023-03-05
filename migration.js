@@ -18,5 +18,9 @@ pool.query(
   );`
 );
 
+//promise to potentially handle node errors
 
-pool.end()
+process.on('unhandledRejection', error => {
+  console.error('Unhandled Promise Rejection:', error);
+  process.exit(1);
+});

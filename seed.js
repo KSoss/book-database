@@ -63,5 +63,7 @@ pool.query('SELECT COUNT(*) FROM author', (err, result) => {
     }
   });
 
-
-pool.end()
+  process.on('unhandledRejection', error => {
+    console.error('Unhandled Promise Rejection:', error);
+    process.exit(1);
+  });
