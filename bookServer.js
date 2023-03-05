@@ -1,5 +1,7 @@
 const express = require('express');
+
 const { Pool } = require('pg');
+const pool = require('./dbConn');
 
 const app = express();
 const port = 8000;
@@ -12,16 +14,6 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 
-
-const DB_HOST = process.env.DATABASE_HOST || 'localhost';
-
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'bookshop',
-  password: 'password',
-  port: 6432,
-});
 
 app.listen(port, function() {
   console.log('Listening on port', port);

@@ -8,5 +8,10 @@
   },
   "devDependencies": {
     "knex": "^2.4.2"
+  },
+  "scripts": {
+    "start": "nodemon bookServer.js",
+    "migrate": "knex migrate.js:run",
+    "seed": "knex seed.js:run"
   }
 }
