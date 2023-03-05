@@ -13,6 +13,9 @@ const dbConfig = ({
   database: POSTGRES_DB,
   password: POSTGRES_PASSWORD,
   port: 5432,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 let pool = null;
