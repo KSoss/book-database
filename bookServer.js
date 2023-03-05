@@ -21,7 +21,7 @@ app.listen(port, function() {
 });
 
 app.get('/books', (req, res, next) => {
-  pool.query('SELECT b.*, a.name AS author FROM book b JOIN author a ON b.author_id = a.id', (err, result) => {
+  pool.query('SELECT b.*, a.name AS author FROM books b JOIN author a ON b.author_id = a.id', (err, result) => {
     if (err) {
       return next(err);
     }
@@ -34,9 +34,9 @@ app.get('/books/:id', (req, res, next) => {
   if(!Number.isInteger(id)) {
     res.status(404).send("That is not a number silly")
   }
-  console.log("book ID: ", id);
+  console.log("books ID: ", id);
 
-  pool.query('SELECT b.*, a.name AS author FROM book b JOIN author a ON b.author_id = a.id WHERE b.id = $1', [id], (err, result) => {
+  pool.query('SELECT b.*, a.name AS author FROM books b JOIN author a ON b.author_id = a.id WHERE b.id = $1', [id], (err, result) => {
     if (err) {
       return next(err);
     }
@@ -85,7 +85,7 @@ app.post('/books', (req, res, next) => {
           }
           // Insert new book record with new author id
           const authorId = result.rows[0].id;
-          pool.query('INSERT INTO book (name, genre, author_id) VALUES ($1, $2, $3)', [title, genre, authorId], (err, result) => {
+          pool.query('INSERT INTO books (name, genre, author_id) VALUES ($1, $2, $3)', [title, genre, authorId], (err, result) => {
             if (err) {
               return next(err);
             }
@@ -96,7 +96,7 @@ app.post('/books', (req, res, next) => {
       } else {
         // Author exists, so insert new book record with existing author id
         const authorId = result.rows[0].id;
-        pool.query('INSERT INTO book (name, genre, author_id) VALUES ($1, $2, $3)', [title, genre, authorId], (err, result) => {
+        pool.query('INSERT INTO books (name, genre, author_id) VALUES ($1, $2, $3)', [title, genre, authorId], (err, result) => {
           if (err) {
             return next(err);
           }
@@ -118,7 +118,7 @@ app.delete("/books/:id", (req, res, next) => {
     return res.status(400).send("No book found with that ID");
   }
 
-pool.query('DELETE FROM book WHERE id = $1 RETURNING *', [id], (err, data) => {
+pool.query('DELETE FROM books WHERE id = $1 RETURNING *', [id], (err, data) => {
     if (err){
       return next(err);
     }
