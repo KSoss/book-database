@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 //test for front end
-app.use(express.static('/opt/render/project/src'))
+app.use(express.static("public"));
 
 
 // only took 1 hour to realize that this was what would help me to deconstruct my postman requests
