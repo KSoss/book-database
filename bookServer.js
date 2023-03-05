@@ -1,5 +1,4 @@
-
-
+const http = require('http');
 const express = require('express');
 
 const { Pool } = require('pg');
@@ -7,6 +6,10 @@ const pool = require('./dbConn');
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+//test for front end
+app.use(express.static('static'))
+
 
 // only took 1 hour to realize that this was what would help me to deconstruct my postman requests
 const bodyParser = require('body-parser');
@@ -16,6 +19,8 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 
+
+// listen command
 app.listen(port, function() {
   console.log('Listening on port', port);
 });
