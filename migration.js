@@ -14,7 +14,7 @@ pool.query(
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     genre TEXT NOT NULL,
-    author_id INTEGER NOT NULL REFERENCES authors(id)
+    author_id INTEGER NOT NULL REFERENCES author(id)
   );`
 );
 
